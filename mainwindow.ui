@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1136</width>
+    <height>765</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="LcdDateTime" name="lcdDateTime">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>670</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="LedText" name="ledText">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>90</y>
+      <width>611</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>基于Qt的无人机地面站</string>
+    </property>
+    <property name="step">
+     <number>4</number>
+    </property>
+    <property name="foreground">
+     <color alpha="251">
+      <red>100</red>
+      <green>184</green>
+      <blue>255</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>249</green>
+      <blue>236</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="ColorStyle" name="colorStyle">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>70</y>
+      <width>641</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="bgColor">
+     <color alpha="75">
+      <red>213</red>
+      <green>118</green>
+      <blue>81</blue>
+     </color>
+    </property>
+    <property name="signColor">
+     <color>
+      <red>164</red>
+      <green>41</green>
+      <blue>17</blue>
+     </color>
+    </property>
+    <property name="signSize">
+     <number>20</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>220</y>
+      <width>281</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="ColorButton" name="bt_serialsetup">
+       <property name="superText">
+        <string>1</string>
+       </property>
+       <property name="text">
+        <string>配置串口</string>
+       </property>
+       <property name="textFont">
+        <font>
+         <family>阿里巴巴普惠体 Medium</family>
+         <pointsize>35</pointsize>
+        </font>
+       </property>
+       <property name="textColor">
+        <color>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </property>
+       <property name="normalColor">
+        <color>
+         <red>99</red>
+         <green>182</green>
+         <blue>252</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ColorButton" name="bt_flightstate">
+       <property name="superText">
+        <string>1</string>
+       </property>
+       <property name="text">
+        <string>飞控状态</string>
+       </property>
+       <property name="textFont">
+        <font>
+         <family>阿里巴巴普惠体 Medium</family>
+         <pointsize>35</pointsize>
+        </font>
+       </property>
+       <property name="textColor">
+        <color>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </property>
+       <property name="normalColor">
+        <color>
+         <red>99</red>
+         <green>182</green>
+         <blue>252</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ColorButton" name="bt_parameter">
+       <property name="superText">
+        <string>1</string>
+       </property>
+       <property name="text">
+        <string>飞控设置</string>
+       </property>
+       <property name="textFont">
+        <font>
+         <family>阿里巴巴普惠体 Medium</family>
+         <pointsize>35</pointsize>
+        </font>
+       </property>
+       <property name="textColor">
+        <color>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </property>
+       <property name="normalColor">
+        <color>
+         <red>99</red>
+         <green>182</green>
+         <blue>252</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ColorButton" name="bt_sendandreceive">
+       <property name="superText">
+        <string>1</string>
+       </property>
+       <property name="text">
+        <string>串口收发</string>
+       </property>
+       <property name="textFont">
+        <font>
+         <family>阿里巴巴普惠体 Medium</family>
+         <pointsize>35</pointsize>
+        </font>
+       </property>
+       <property name="textColor">
+        <color>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </property>
+       <property name="normalColor">
+        <color>
+         <red>99</red>
+         <green>182</green>
+         <blue>252</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="bt_switch">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>290</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>阿里巴巴普惠体 Medium</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton 
+{ 
+	background-color: rgb(255，255，255); 
+	border-radius: 20px; 
+	color: rgb(0, 0, 0); 
+} 
+QPushButton:hover 
+{ 
+	background-color: rgb(200,235,254); 
+}</string>
+    </property>
+    <property name="text">
+     <string>启用</string>
+    </property>
+    <property name="icon">
+     <iconset resource="Resources.qrc">
+      <normaloff>:/image/closecom.png</normaloff>
+      <normalon>:/image/opencom.png</normalon>:/image/closecom.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>colorStyle</zorder>
+   <zorder>lcdDateTime</zorder>
+   <zorder>ledText</zorder>
+   <zorder>bt_switch</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1136</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="actiontest"/>
+    <addaction name="actionBack_Number2011"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>开发历程</string>
+    </property>
+    <addaction name="actionhttps_note_youdao_com_s_6BcVBBtg"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actiontest">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/image/tech.png</normaloff>:/image/tech.png</iconset>
+   </property>
+   <property name="text">
+    <string>开发：汪大狗</string>
+   </property>
+  </action>
+  <action name="actionBack_Number2011">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/image/remote.png</normaloff>:/image/remote.png</iconset>
+   </property>
+   <property name="text">
+    <string>参考源：无名创新</string>
+   </property>
+  </action>
+  <action name="actionhttps_note_youdao_com_s_6BcVBBtg">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/image/write.png</normaloff>:/image/write.png</iconset>
+   </property>
+   <property name="text">
+    <string>https://note.youdao.com/s/6BcVBBtg</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ColorButton</class>
+   <extends>QWidget</extends>
+   <header>colorbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ColorStyle</class>
+   <extends>QWidget</extends>
+   <header>colorstyle.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LcdDateTime</class>
+   <extends>QLCDNumber</extends>
+   <header>lcddatetime.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LedText</class>
+   <extends>QWidget</extends>
+   <header>ledtext.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Resources.qrc"/>
+  <include location="../../../无名创新飞控开源地面站——NGroundStation/NGroundStation/NGroundStation/Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
