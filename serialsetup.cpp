@@ -78,8 +78,8 @@ void serialsetup::serialinit(void)
     ui->cBox_SerialPortNum->addItems(comList);
    */
     QStringList baudRateList = QStringList() << "1200" << "2400" << "4800"
-                                             << "9600" << "14400" << "19200" << "38400" << "43000" << "57600"
-                                             << "76800" << "115200" << "128000" << "230400" << "256000" <<"460800"
+                                             << "9600" << "14400" << "19200"  << "38400" << "43000" << "57600"
+                                             << "76800" << "115200" << "128000" << "230400" << "256000" <<"460800" <<"500000"
                                              << "921600" << "1382400";
     QStringList parityList = QStringList() << "无" << "奇校验" << "偶校验";
     QStringList stopBitsList = QStringList() << "1" << "1.5" << "2";

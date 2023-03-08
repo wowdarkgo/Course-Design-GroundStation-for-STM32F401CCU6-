@@ -22,20 +22,18 @@ extern qint64 thr_cnt1,thr_cnt2;
 extern qint64 thr_cnt3,thr_cnt4;
 extern qint64 thr_cnt5;
 
+//第一帧数据，功能字0x00 数据长度LEN VER
+//未使用！写的是版本信息
 
-
-
-
-
-//第一帧数据，功能字0x01  数据长度12
+//第二帧数据，功能字0x01  数据长度LEN STATUS
 extern float pitch,roll,yaw;//姿态角
 extern float pitch_gyro,roll_gyro,yaw_gyro;//姿态角速度
 extern float vbat;
-extern float imu_temp;
+//extern float imu_temp;
 extern uint8_t fly_mode;//飞行模式
 extern uint8_t armed_flag;//解锁标志
 
-//第二帧数据，功能字0x02  数据长度18
+//第三帧数据，功能字0x02  数据长度18
 extern int16_t ax,ay,az;
 extern int16_t gx,gy,gz;
 extern int16_t mx,my,mz;

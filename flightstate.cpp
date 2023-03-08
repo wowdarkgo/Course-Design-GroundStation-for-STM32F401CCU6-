@@ -124,14 +124,14 @@ void flightstate::timer_flight_show()
    ui->my->setText(QString::number(my));
    ui->mz->setText(QString::number(mz));
 
-   ui->ch0->setText(QString::number(rc[0]));
-   ui->ch1->setText(QString::number(rc[1]));
-   ui->ch2->setText(QString::number(rc[2]));
-   ui->ch3->setText(QString::number(rc[3]));
-   ui->ch4->setText(QString::number(rc[4]));
-   ui->ch5->setText(QString::number(rc[5]));
-   ui->ch6->setText(QString::number(rc[6]));
-   ui->ch7->setText(QString::number(rc[7]));
+   ui->ch0->setText(QString::number(rc[0])); //ROL
+   ui->ch1->setText(QString::number(rc[1])); //PIT
+   ui->ch2->setText(QString::number(rc[2])); //THR
+   ui->ch3->setText(QString::number(rc[3])); //YAW
+   ui->ch4->setText(QString::number(rc[4])); //AUX1
+   ui->ch5->setText(QString::number(rc[5])); //AUX2
+   ui->ch6->setText(QString::number(rc[6])); //AUX3
+   ui->ch7->setText(QString::number(rc[7])); //AUX4
 
    ui->ch0_pro->setValue(rc[0]);  // 当前进度
    ui->ch1_pro->setValue(rc[1]);  // 当前进度

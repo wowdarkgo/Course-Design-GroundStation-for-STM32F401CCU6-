@@ -46,11 +46,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    calibration.cpp \
+#    calibration.cpp \
     flightstate.cpp \
     main.cpp \
     mainwindow.cpp \
-    remotectrl.cpp \
+#    remotectrl.cpp \
     sendandreceive.cpp \
     serialportthread.cpp \
     serialsetup.cpp \
@@ -59,10 +59,10 @@ SOURCES += \
 
 HEADERS += \
     Headfile.h \
-    calibration.h \
+#    calibration.h \
     flightstate.h \
     mainwindow.h \
-    remotectrl.h \
+#    remotectrl.h \
     sendandreceive.h \
     serialportthread.h \
     serialsetup.h \
@@ -70,10 +70,10 @@ HEADERS += \
     waveshow.h
 
 FORMS += \
-    calibration.ui \
+#    calibration.ui \
     flightstate.ui \
     mainwindow.ui \
-    remotectrl.ui \
+#    remotectrl.ui \
     sendandreceive.ui \
     serialsetup.ui \
     setparameter.ui \

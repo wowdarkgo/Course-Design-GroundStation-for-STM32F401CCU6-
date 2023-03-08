@@ -4607,72 +4607,6 @@ border-radius:1px;
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="0" column="0" colspan="3">
-        <widget class="QwtPlot" name="qwtPlot">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>阿里巴巴普惠体 Medium</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string>QLabel
-{ 
-	color: rgb(0, 0, 0); 
-} </string>
-         </property>
-         <property name="autoReplot">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="stopwave">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>阿里巴巴普惠体 Medium</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton 
-{ 
-	background-color: rgb(255，255，255); 
-	border-radius: 20px; 
-	color: rgb(0, 0, 0); 
-} 
-QPushButton:hover 
-{ 
-	background-color: rgb(220, 220, 220);
-
-}</string>
-         </property>
-         <property name="text">
-          <string>停止显示</string>
-         </property>
-         <property name="icon">
-          <iconset resource="Resources.qrc">
-           <normaloff>:/image/stopwave.png</normaloff>:/image/stopwave.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="2">
         <widget class="QPushButton" name="defaultwave">
          <property name="sizePolicy">
@@ -4754,6 +4688,72 @@ QPushButton:hover
            <width>50</width>
            <height>50</height>
           </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="stopwave">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>阿里巴巴普惠体 Medium</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton 
+{ 
+	background-color: rgb(255，255，255); 
+	border-radius: 20px; 
+	color: rgb(0, 0, 0); 
+} 
+QPushButton:hover 
+{ 
+	background-color: rgb(220, 220, 220);
+
+}</string>
+         </property>
+         <property name="text">
+          <string>停止显示</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resources.qrc">
+           <normaloff>:/image/stopwave.png</normaloff>:/image/stopwave.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QwtPlot" name="qwtPlot">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>阿里巴巴普惠体 Medium</family>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string>QLabel
+{ 
+	color: rgb(0, 0, 0); 
+} </string>
+         </property>
+         <property name="autoReplot">
+          <bool>false</bool>
          </property>
         </widget>
        </item>

@@ -60,18 +60,18 @@ void sendandreceive::timer_serialsendandreceiveEvent()
     QByteArray bufferHex = str_buffer_Serial.toHex();//转换成hex
     bufferHex=bufferHex.toUpper();//转换成大写
     QString str_buffer1;
-//    if(ui->cb_rechex->isChecked())//16进制显示
-//    {
-//      str_buffer1 = QString(bufferHex);//转换成字符
-//      for(int i = str_buffer1.count(); i > 0; i = i-2)
-//      {
-//        str_buffer1.insert(i," ");
-//      }
-//    }
-//    else//字符形式显示
-//    {
-//       str_buffer1 = QString(str_buffer_Serial);
-//    }
+    if(ui->cb_rechex->isChecked())//16进制显示
+    {
+      str_buffer1 = QString(bufferHex);//转换成字符
+      for(int i = str_buffer1.count(); i > 0; i = i-2)
+      {
+        str_buffer1.insert(i," ");
+      }
+    }
+    else//字符形式显示
+    {
+       str_buffer1 = QString(str_buffer_Serial);
+    }
     if(ui->opencolse->text()=="关闭串口")
     {
        ui->SerialPortDataShow->insertPlainText(str_buffer1);
@@ -108,24 +108,24 @@ void sendandreceive::on_bt_sendserialdata_clicked()
        return;
     }
     QString command = ui->SerialPortDataSend->toPlainText();//从发送窗口取出文本
-//    if(ui->cb_sendhex->isChecked())
-//    {
-//        QStringList commadList = command.split(' ');//寻找空格把字符串分开成字符
-//        QByteArray byteArray;
-//        byteArray.resize(commadList.count());//初始化新数组
-//        bool ok = false;
-//        for(int i = 0; i < commadList.count(); i++)
-//        {
-//            byteArray[i]=commadList.at(i).toInt(&ok,16);
-//        }
-//        send_cnt+=commadList.count();
-//        serialbasic->write(byteArray);//以16进制形式发送
-//    }
-//    else
-//    {
-//        serialbasic->write(command.toUtf8().data());//以字符形式发送
-//        send_cnt+=command.length();
-//    }
+    if(ui->cb_sendhex->isChecked())
+    {
+        QStringList commadList = command.split(' ');//寻找空格把字符串分开成字符
+        QByteArray byteArray;
+        byteArray.resize(commadList.count());//初始化新数组
+        bool ok = false;
+        for(int i = 0; i < commadList.count(); i++)
+        {
+            byteArray[i]=commadList.at(i).toInt(&ok,16);
+        }
+        send_cnt+=commadList.count();
+        serialbasic->write(byteArray);//以16进制形式发送
+    }
+    else
+    {
+        serialbasic->write(command.toUtf8().data());//以字符形式发送
+        send_cnt+=command.length();
+    }
 
     int a=(uintptr_t)QThread::currentThreadId();
     QString LogInfo=QString::number(a,10);
@@ -169,24 +169,24 @@ void sendandreceive::timer_autosend_event()
        return;
     }
 
-//    if(ui->cb_sendhex->isChecked())
-//    {
-//        QStringList commadList = command.split(' ');//寻找空格把字符串分开成字符
-//        QByteArray byteArray;
-//        byteArray.resize(commadList.count());//初始化新数组
-//        bool ok = false;
-//        for(int i = 0; i < commadList.count(); i++)
-//        {
-//            byteArray[i]=commadList.at(i).toInt(&ok,16);
-//        }
-//        send_cnt+=commadList.count();
-//        serialbasic->write(byteArray);//以16进制形式发送
-//    }
-//    else
-//    {
-//        serialbasic->write(command.toUtf8().data());//以字符形式发送
-//        send_cnt+=command.length();
-//    }
+    if(ui->cb_sendhex->isChecked())
+    {
+        QStringList commadList = command.split(' ');//寻找空格把字符串分开成字符
+        QByteArray byteArray;
+        byteArray.resize(commadList.count());//初始化新数组
+        bool ok = false;
+        for(int i = 0; i < commadList.count(); i++)
+        {
+            byteArray[i]=commadList.at(i).toInt(&ok,16);
+        }
+        send_cnt+=commadList.count();
+        serialbasic->write(byteArray);//以16进制形式发送
+    }
+    else
+    {
+        serialbasic->write(command.toUtf8().data());//以字符形式发送
+        send_cnt+=command.length();
+    }
 }
 
 void sendandreceive::on_send_period_editingFinished()//设置发送周期，回车后生效
@@ -368,7 +368,7 @@ void sendandreceive::init(void)
 
     QStringList baudRateList = QStringList() << "1200" << "2400" << "4800"
                                              << "9600" << "14400" << "19200" << "38400" << "43000" << "57600"
-                                             << "76800" << "115200" << "128000" << "230400" << "256000" <<"460800"
+                                             << "76800" << "115200" << "128000" << "230400" << "256000" <<"460800" <<"500000"
                                              << "921600" << "1382400";
     QStringList parityList = QStringList() << "无" << "奇校验" << "偶校验";
     QStringList stopBitsList = QStringList() << "1" << "1.5" << "2";

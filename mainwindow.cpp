@@ -7,8 +7,8 @@ serialsetup *usbsetup;
 waveshow *wave;
 flightstate *state;
 SetParameter *setpara;
-remotectrl *remote;
-calibration *cal;
+//remotectrl *remote;
+//calibration *cal;
 
 QString bt_switch_text;
 QSerialPort* serialPort=nullptr;
@@ -444,7 +444,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
        pitch_gyro =0.01f*((int32_t)(*(data_buf+14)<<24)|(*(data_buf+15)<<16)|(*(data_buf+16)<<8)|*(data_buf+17));
        yaw_gyro =0.01f*((int32_t)(*(data_buf+18)<<24)|(*(data_buf+19)<<16)|(*(data_buf+20)<<8)|*(data_buf+21));
 
-       imu_temp =0.01f*((int16_t)(*(data_buf+22)<<8)|*(data_buf+23));
+//       imu_temp =0.01f*((int16_t)(*(data_buf+22)<<8)|*(data_buf+23));
        vbat=0.01f*((int16_t)(*(data_buf+24)<<8)|*(data_buf+25));
 
        fly_mode=*(data_buf+26);
@@ -860,34 +860,34 @@ void MainWindow::update()
    QDesktopServices::openUrl(QUrl(QString("http://www.nameless.tech/down/NGroundStation.zip")));
 }
 
-void MainWindow::on_bt_remote_clicked()
-{
-    if(serialflag==false)
-    {
-      QMessageBox::critical(this,"提示","串口异常，请您先配置串口，再打开串口！！！",QMessageBox::Yes,QMessageBox::Yes);
-    }
-    else
-    {
-        //遥控ui
-        remote=new remotectrl();
-        remote->setWindowFlags(Qt::Window);
-        remote->setAttribute(Qt::WA_DeleteOnClose);
-        connect(remote,SIGNAL(exitwindows()),this,SLOT(redraw()));//当点击子界面时，调用主界面的redraw()函数
-        connect(this,SIGNAL(sendcheck(uint8_t)),remote,SLOT(getcheck(uint8_t)));
-        remote->show();
-        this->hide();
-    }
-}
+//void MainWindow::on_bt_remote_clicked()
+//{
+//    if(serialflag==false)
+//    {
+//      QMessageBox::critical(this,"提示","串口异常，请您先配置串口，再打开串口！！！",QMessageBox::Yes,QMessageBox::Yes);
+//    }
+//    else
+//    {
+//        //遥控ui
+//        remote=new remotectrl();
+//        remote->setWindowFlags(Qt::Window);
+//        remote->setAttribute(Qt::WA_DeleteOnClose);
+//        connect(remote,SIGNAL(exitwindows()),this,SLOT(redraw()));//当点击子界面时，调用主界面的redraw()函数
+//        connect(this,SIGNAL(sendcheck(uint8_t)),remote,SLOT(getcheck(uint8_t)));
+//        remote->show();
+//        this->hide();
+//    }
+//}
 
-void MainWindow::on_bt_calibration_clicked()
-{
-    //串口设置ui
-    cal =new calibration();
-    cal->setWindowFlags(Qt::Window);
-    cal->setAttribute(Qt::WA_DeleteOnClose);
-    connect(cal,SIGNAL(exitwindows()),this,SLOT(redraw()));//当点击子界面时，调用主界面的redraw()函数
-    connect(this,SIGNAL(sendcheck(uint8_t)),cal,SLOT(getcheck(uint8_t)));
+//void MainWindow::on_bt_calibration_clicked()
+//{
+//    //串口设置ui
+//    cal =new calibration();
+//    cal->setWindowFlags(Qt::Window);
+//    cal->setAttribute(Qt::WA_DeleteOnClose);
+//    connect(cal,SIGNAL(exitwindows()),this,SLOT(redraw()));//当点击子界面时，调用主界面的redraw()函数
+//    connect(this,SIGNAL(sendcheck(uint8_t)),cal,SLOT(getcheck(uint8_t)));
 
-    cal->show();
-    this->hide();
-}
+//    cal->show();
+//    this->hide();
+//}

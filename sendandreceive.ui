@@ -544,6 +544,18 @@ QPushButton:hover
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="cb_rechex">
+       <property name="font">
+        <font>
+         <family>阿里巴巴普惠体 Medium</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>16进制</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <layout class="QVBoxLayout" name="verticalLayout"/>
      </item>
     </layout>
@@ -1080,6 +1092,18 @@ QPushButton:hover
          <property name="icon">
           <iconset resource="Resources.qrc">
            <normaloff>:/image/sw.png</normaloff>:/image/sw.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cb_sendhex">
+         <property name="font">
+          <font>
+           <family>阿里巴巴普惠体 Medium</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>16进制</string>
          </property>
         </widget>
        </item>

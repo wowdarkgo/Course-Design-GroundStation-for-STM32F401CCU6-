@@ -66,7 +66,7 @@ typedef  struct{
 #include "flightstate.h"
 #include "serialportthread.h"
 #include "setparameter.h"
-#include "remotectrl.h"
-#include "calibration.h"
+//#include "remotectrl.h"
+//#include "calibration.h"
 
 #endif // HEADFILE_H

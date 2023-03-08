@@ -216,10 +216,10 @@
    <widget class="QPushButton" name="bt_switch">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>290</y>
-      <width>121</width>
-      <height>31</height>
+      <x>720</x>
+      <y>260</y>
+      <width>141</width>
+      <height>57</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -231,23 +231,23 @@
     <property name="font">
      <font>
       <family>阿里巴巴普惠体 Medium</family>
-      <pointsize>15</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton 
 { 
-	background-color: rgb(255，255，255); 
+	background-color: rgb(240, 240, 240); 
 	border-radius: 20px; 
 	color: rgb(0, 0, 0); 
 } 
 QPushButton:hover 
 { 
-	background-color: rgb(200,235,254); 
-}</string>
+	background-color: rgb(230,230,230); 
+}2</string>
     </property>
     <property name="text">
-     <string>启用</string>
+     <string>打开串口</string>
     </property>
     <property name="icon">
      <iconset resource="Resources.qrc">
@@ -256,8 +256,8 @@ QPushButton:hover
     </property>
     <property name="iconSize">
      <size>
-      <width>50</width>
-      <height>50</height>
+      <width>40</width>
+      <height>40</height>
      </size>
     </property>
    </widget>
@@ -346,6 +346,7 @@ QPushButton:hover
  <resources>
   <include location="Resources.qrc"/>
   <include location="../../../无名创新飞控开源地面站——NGroundStation/NGroundStation/NGroundStation/Resources.qrc"/>
+  <include location="../orgin-NGroundStation/Resources.qrc"/>
  </resources>
  <connections/>
 </ui>

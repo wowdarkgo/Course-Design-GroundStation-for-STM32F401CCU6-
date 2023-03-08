@@ -9,15 +9,18 @@ qint64 thr_cnt1=0,thr_cnt2=0;
 qint64 thr_cnt3=0,thr_cnt4=0;
 qint64 thr_cnt5=0;
 
-//第一帧数据，功能字0x01  数据长度24
+//第一帧数据，功能字0x00 数据长度LEN VER
+//未使用！写的是版本信息
+
+//第二帧数据，功能字0x01  数据长度LEN STATUS
 float pitch=0,roll=0,yaw=0;//姿态角
 float pitch_gyro=0,roll_gyro=0,yaw_gyro=0;//姿态角速度
 float vbat=0;
-float imu_temp=0;
+//float imu_temp=0;
 uint8_t fly_mode=0;//飞行模式
 uint8_t armed_flag=0;//解锁标志
 
-//第二帧数据，功能字0x02  数据长度18
+//第三帧数据，功能字0x02  数据长度18
 int16_t ax,ay,az;
 int16_t gx,gy,gz;
 int16_t mx,my,mz;
