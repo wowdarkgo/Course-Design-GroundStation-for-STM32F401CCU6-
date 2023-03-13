@@ -351,7 +351,7 @@ void MainWindow::NCLinkDataGet()
 
 }
 
-
+//以下为上位机接受数据相关配置！！
 void MainWindow::NCLinkDataPrase(uint8_t data)
 {
     thr_cnt4++;
@@ -368,7 +368,7 @@ void MainWindow::NCLinkDataPrase(uint8_t data)
         state=2;
         RxBuffer[1]=data;
     }
-    else if(state==2&&data<0XF1)//功能字
+    else if(state==2)//功能字
     {
         state=3;
         RxBuffer[2]=data;
@@ -389,20 +389,21 @@ void MainWindow::NCLinkDataPrase(uint8_t data)
     }
     else if(state==5)//校验和
     {
-        state = 6;
-        RxBuffer[4+_data_cnt++]=data;
-    }
-    else if(state==6&&data==NCLink_End0)//帧尾0
-    {
-        state = 7;
-        RxBuffer[4+_data_cnt++]=data;
-    }
-    else if(state==7&&data==NCLink_End1)//帧尾1
-    {
         state = 0;
-        RxBuffer[4+_data_cnt]=data;
+        RxBuffer[4+_data_cnt++]=data;
         dataSort(RxBuffer,_data_cnt+5);
     }
+//    else if(state==6&&data==NCLink_End0)//帧尾0
+//    {
+//        state = 7;
+//        RxBuffer[4+_data_cnt++]=data;
+//    }
+//    else if(state==7&&data==NCLink_End1)//帧尾1
+//    {
+//        state = 0;
+//        RxBuffer[4+_data_cnt]=data;
+//        dataSort(RxBuffer,_data_cnt+5);
+//    }
     else
     {
         state = 0;
@@ -416,21 +417,21 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 {
     uint8_t sum = 0;
     for(uint8_t i=0;i<(num-3);i++)     sum^=(*(data_buf+i));//计算校验和
-    if(!(sum==*(data_buf+num-3)))
-    {
-        //qDebug()<<"default";
-        return;
-    }
+//    if(!(sum==*(data_buf+num-3)))
+//    {
+//        //qDebug()<<"default";
+//        return;
+//    }
     if(!(*(data_buf)==NCLink_Head0 && *(data_buf+1)==NCLink_Head1))//帧头校验
     {
         //qDebug()<<"default";
         return;
     }
-    if(!(*(data_buf+num-2)==NCLink_End0 && *(data_buf+num-1)==NCLink_End1))//帧尾校验
-    {
-        //qDebug()<<"default";
-        return;
-    }
+//    if(!(*(data_buf+num-2)==NCLink_End0 && *(data_buf+num-1)==NCLink_End1))//帧尾校验
+//    {
+//        //qDebug()<<"default";
+//        return;
+//    }
     //qDebug()<<"sum check okay"<<"FC:"<<data_buf[2]<<"LE:"<<data_buf[3];
 
     if(*(data_buf+2)==0X01)//基本姿态数据
@@ -440,15 +441,15 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
        pitch=0.01f*((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
        yaw  =0.01f*((int16_t)(*(data_buf+8)<<8)|*(data_buf+9));
 
-       roll_gyro =0.01f*((int32_t)(*(data_buf+10)<<24)|(*(data_buf+11)<<16)|(*(data_buf+12)<<8)|*(data_buf+13));
-       pitch_gyro =0.01f*((int32_t)(*(data_buf+14)<<24)|(*(data_buf+15)<<16)|(*(data_buf+16)<<8)|*(data_buf+17));
-       yaw_gyro =0.01f*((int32_t)(*(data_buf+18)<<24)|(*(data_buf+19)<<16)|(*(data_buf+20)<<8)|*(data_buf+21));
+//       roll_gyro =0.01f*((int32_t)(*(data_buf+10)<<24)|(*(data_buf+11)<<16)|(*(data_buf+12)<<8)|*(data_buf+13));
+//       pitch_gyro =0.01f*((int32_t)(*(data_buf+14)<<24)|(*(data_buf+15)<<16)|(*(data_buf+16)<<8)|*(data_buf+17));
+//       yaw_gyro =0.01f*((int32_t)(*(data_buf+18)<<24)|(*(data_buf+19)<<16)|(*(data_buf+20)<<8)|*(data_buf+21));
 
 //       imu_temp =0.01f*((int16_t)(*(data_buf+22)<<8)|*(data_buf+23));
-       vbat=0.01f*((int16_t)(*(data_buf+24)<<8)|*(data_buf+25));
-
-       fly_mode=*(data_buf+26);
-       armed_flag=*(data_buf+27);
+//       vbat=0.01f*((int16_t)(*(data_buf+24)<<8)|*(data_buf+25));
+ vbat =0.01f*((int32_t)(*(data_buf+10)<<24)|(*(data_buf+11)<<16)|(*(data_buf+12)<<8)|*(data_buf+13));
+       fly_mode=*(data_buf+14);
+       armed_flag=*(data_buf+15);
 
        if(waveclear_cnt<flightstate_wave_num_max)
        {

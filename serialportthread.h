@@ -11,10 +11,10 @@
 #define BYTE3(dwTemp)       ( *( (char *)(&dwTemp) + 3) )
 
 
-#define NCLink_Head0 0xFF
-#define NCLink_Head1 0xFC
-#define NCLink_End0  0xA1
-#define NCLink_End1  0xA2
+#define NCLink_Head0 0xAA
+#define NCLink_Head1 0xAA
+//#define NCLink_End0  0xA1
+//#define NCLink_End1  0xA2
 #define BufferSizeMax (65536*2)
 
 

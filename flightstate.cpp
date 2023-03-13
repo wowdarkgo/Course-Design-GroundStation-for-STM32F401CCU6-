@@ -92,17 +92,17 @@ void flightstate::timer_flight_show()
    ui->roll->setText(QString::number(roll,10,2));
    ui->yaw->setText(QString::number(yaw,10,2));
 
-   ui->alt->setText(QString::number(alt_pos_fus,10,2));
+//   ui->alt->setText(QString::number(alt_pos_fus,10,2));
    ui->vz->setText(QString::number(alt_vel_fus,10,2));
    ui->accelz->setText(QString::number(alt_accel_fus));
 
-//   ui->vbat->setText(QString::number(vbat,10,2));
+   ui->vbat->setText(QString::number(vbat,10,2));
 //   ui->imu_temp->setText(QString::number(imu_temp,10,2));
 
    if(fly_mode==1) ui->flightmode->setText("姿态");
    else if(fly_mode==2) ui->flightmode->setText("定高");
 
-   if(armed_flag==0) ui->armed->setText("加锁");
+   if(armed_flag==0) ui->armed->setText("锁定");
    else if(armed_flag==1) ui->armed->setText("解锁");
 
    if(waveshow_flag==true)
