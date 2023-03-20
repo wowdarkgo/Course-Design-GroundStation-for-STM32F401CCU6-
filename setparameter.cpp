@@ -10,11 +10,11 @@ SetParameter::SetParameter(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("参数调试");
+    this->setWindowTitle("飞控设置");
     setWindowIcon(QIcon(":/image/debug.png"));
 
     QPalette palette(this->palette());
-    palette.setColor(QPalette::Background, QColor(233,235,254));//QColor(78,168,243)
+    palette.setColor(QPalette::Background, QColor(240, 240, 240));
     this->setPalette(palette);
 
     ui->kp1->setValidator(new QIntValidator(0, 100000, this));//限制数据输入范围
@@ -74,11 +74,11 @@ SetParameter::SetParameter(QWidget *parent) :
     ui->kd17->setValidator(new QIntValidator(0, 100000, this));
     ui->kd18->setValidator(new QIntValidator(0, 100000, this));
 
-    ui->targeheight->setValidator(new QIntValidator(0, 100000, this));
-    ui->safeheight->setValidator(new QIntValidator(0, 100000, this));
-    ui->safevbat->setValidator(new QIntValidator(0, 100000, this));
-    ui->maxheight->setValidator(new QIntValidator(0, 100000, this));
-    ui->maxradius->setValidator(new QIntValidator(0, 100000, this));
+//    ui->targeheight->setValidator(new QIntValidator(0, 100000, this));
+//    ui->safeheight->setValidator(new QIntValidator(0, 100000, this));
+//    ui->safevbat->setValidator(new QIntValidator(0, 100000, this));
+//    ui->maxheight->setValidator(new QIntValidator(0, 100000, this));
+//    ui->maxradius->setValidator(new QIntValidator(0, 100000, this));
 
     setparameter = new QTimer(this);
     connect(setparameter, SIGNAL(timeout()), this, SLOT(timer_setparameter_show()));
@@ -156,14 +156,14 @@ void SetParameter::setparameter_show(uint8_t ch)
     ui->kd17->setText(QString::number(kd[16]));
     ui->kd18->setText(QString::number(kd[17]));
 
-    ui->targeheight->setText(QString::number(targeheight));
-    ui->safeheight->setText(QString::number(safeheight));
-    ui->safevbat->setText(QString::number(safevbat));
-    ui->maxheight->setText(QString::number(maxheight));
-    ui->maxradius->setText(QString::number(maxradius));
-    ui->maxupvel->setText(QString::number(maxupvel));
-    ui->maxdownvel->setText(QString::number(maxdownvel));
-    ui->maxhorvel->setText(QString::number(maxhorvel));
+//    ui->targeheight->setText(QString::number(targeheight));
+//    ui->safeheight->setText(QString::number(safeheight));
+//    ui->safevbat->setText(QString::number(safevbat));
+//    ui->maxheight->setText(QString::number(maxheight));
+//    ui->maxradius->setText(QString::number(maxradius));
+//    ui->maxupvel->setText(QString::number(maxupvel));
+//    ui->maxdownvel->setText(QString::number(maxdownvel));
+//    ui->maxhorvel->setText(QString::number(maxhorvel));
 
     QDateTime current_date_time = QDateTime::currentDateTime();
     QString current_time = current_date_time.toString("hh:mm:ss.zzz");
@@ -208,7 +208,7 @@ void SetParameter::getcheck(uint8_t ch)
     uint16_t kp[3]={0},ki[3]={0},kd[3]={0};
     QDateTime current_date_time = QDateTime::currentDateTime();
     QString current_time = current_date_time.toString("hh:mm:ss.zzz");
-    if(ch==0x0A)
+    if(ch==0x10)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID1-PID3写入成功");
 
@@ -228,7 +228,7 @@ void SetParameter::getcheck(uint8_t ch)
                      kp[2],ki[2],kd[2]);
 
     }
-    else if(ch==0x0B)
+    else if(ch==0x11)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID4-PID6写入成功");
        kp[0]=ui->kp7->text().toUInt();
@@ -246,7 +246,7 @@ void SetParameter::getcheck(uint8_t ch)
                      kp[1],ki[1],kd[1],
                      kp[2],ki[2],kd[2]);
     }
-    else if(ch==0x0C)
+    else if(ch==0x12)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID7-PID9写入成功");
        kp[0]=ui->kp10->text().toUInt();
@@ -264,7 +264,7 @@ void SetParameter::getcheck(uint8_t ch)
                      kp[1],ki[1],kd[1],
                      kp[2],ki[2],kd[2]);
     }
-    else if(ch==0x0D)
+    else if(ch==0x13)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID10-PID12写入成功");
        kp[0]=ui->kp13->text().toUInt();
@@ -282,7 +282,7 @@ void SetParameter::getcheck(uint8_t ch)
                   kp[1],ki[1],kd[1],
                   kp[2],ki[2],kd[2]);
     }
-    else if(ch==0x0E)
+    else if(ch==0x14)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID13-PID15写入成功");
        kp[0]=ui->kp16->text().toUInt();
@@ -300,45 +300,43 @@ void SetParameter::getcheck(uint8_t ch)
                   kp[1],ki[1],kd[1],
                   kp[2],ki[2],kd[2]);
     }
-    else if(ch==0x0F)
+    else if(ch==0x15)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID16-PID18写入成功");
     }
-    else if(ch==0x10)
-    {
-       ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:其它参数写入成功");
-    }
+//    else if(ch==0x10)
+//    {
+//       ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:其它参数写入成功");
+//    }
     ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
 }
 
 extern QSerialPort* serialPort;
 
 
-#define NCLink_Head0 0xFF
-#define NCLink_Head1 0xFC
-#define NCLink_End0  0xA1
-#define NCLink_End1  0xA2
+#define NCLink_Head0 0xAA
+#define NCLink_Head1 0xAA
+//#define NCLink_End0  0xA1
+//#define NCLink_End1  0xA2
 void SetParameter::Send_Cmd_Check(uint8_t cmd,uint8_t data)//地面站指令发送
 {
   uint8_t data_to_send[50];
   uint8_t sum = 0,i=0,len=0;
   len=1;
-  data_to_send[0]=NCLink_Head1;
-  data_to_send[1]=NCLink_Head0;
-  data_to_send[2]=cmd;
+  data_to_send[0]=0xAA;
+  data_to_send[1]=0xAF; //帧头
+  data_to_send[2]=0x02;
   data_to_send[3]=len;
   data_to_send[4]=data;
   for(i=0;i<5;i++)
-    sum ^= data_to_send[i];
-  data_to_send[5]=sum;
-  data_to_send[6]=NCLink_End0;
-  data_to_send[7]=NCLink_End1;
-  if(serialflag) serialPort->write((char *)(data_to_send),8);
+    sum += data_to_send[i];
+  data_to_send[5]=sum & 0xFF;
+  if(serialflag) serialPort->write((char *)(data_to_send),6);
   else
   {
       QDateTime current_date_time = QDateTime::currentDateTime();
       QString current_time = current_date_time.toString("hh:mm:ss.zzz");
-      ui->msg->appendPlainText(current_time+"毫秒>>读写串口失败，请检查串口配置！！！");
+      ui->msg->appendPlainText("读写串口失败，请检查串口配置！！！");
       ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
   }
 }
@@ -350,9 +348,9 @@ void SetParameter::Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1
   uint8_t data_to_send[50];
   uint8_t sum = 0,i=0,cnt=0;
   uint16_t _temp;
-  data_to_send[cnt++]=NCLink_Head1;
-  data_to_send[cnt++]=NCLink_Head0;
-  data_to_send[cnt++]=0x02+group-1;
+  data_to_send[cnt++]=0xAA;
+  data_to_send[cnt++]=0xAF;
+  data_to_send[cnt++]=0x10+group-1;
   data_to_send[cnt++]=0;
 
   _temp = kp1;
@@ -387,16 +385,14 @@ void SetParameter::Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1
 
   data_to_send[3] = cnt-4;
 
-  for(i=0;i<cnt;i++) sum ^= data_to_send[i];
-  data_to_send[cnt++]=sum;
-  data_to_send[cnt++]=NCLink_End0;
-  data_to_send[cnt++]=NCLink_End1;
+  for(i=0;i<cnt;i++) sum += data_to_send[i];
+  data_to_send[cnt++]=sum &0xFF;
   if(serialflag) serialPort->write((char *)(data_to_send),cnt);
   else
   {
       QDateTime current_date_time = QDateTime::currentDateTime();
       QString current_time = current_date_time.toString("hh:mm:ss.zzz");
-      ui->msg->appendPlainText(current_time+"毫秒>>读写串口失败，请检查串口配置！！！");
+      ui->msg->appendPlainText("读写串口失败，请检查串口配置！！！");
       ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
   }
 }
@@ -415,8 +411,8 @@ void SetParameter::Send_Parameter(uint8_t group,
   uint8_t data_to_send[50];
   uint8_t sum = 0,i=0,cnt=0;
   uint16_t _temp;
-  data_to_send[cnt++]=NCLink_Head1;
-  data_to_send[cnt++]=NCLink_Head0;
+  data_to_send[cnt++]=0xAA;
+  data_to_send[cnt++]=0xAF;
   data_to_send[cnt++]=0x08+group-1;
   data_to_send[cnt++]=0;
 
@@ -454,16 +450,16 @@ void SetParameter::Send_Parameter(uint8_t group,
 
   data_to_send[3] = cnt-4;
 
-  for(i=0;i<cnt;i++) sum ^= data_to_send[i];
-  data_to_send[cnt++]=sum;
-  data_to_send[cnt++]=NCLink_End0;
-  data_to_send[cnt++]=NCLink_End1;
+  for(i=0;i<cnt;i++) sum += data_to_send[i];
+  data_to_send[cnt++]=sum &0xFF;
+//  data_to_send[cnt++]=NCLink_End0;
+//  data_to_send[cnt++]=NCLink_End1;
   if(serialflag) serialPort->write((char *)(data_to_send),cnt);
   else
   {
       QDateTime current_date_time = QDateTime::currentDateTime();
       QString current_time = current_date_time.toString("hh:mm:ss.zzz");
-      ui->msg->appendPlainText(current_time+"毫秒>>读写串口失败，请检查串口配置！！！");
+      ui->msg->appendPlainText("读写串口失败，请检查串口配置！！！");
       ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
   }
 }
@@ -476,7 +472,7 @@ void SetParameter::on_readall_clicked()
 
 void SetParameter::on_defaultall_clicked()
 {
-  Send_Cmd_Check(0x01,0x02);
+  Send_Cmd_Check(0x01,0xA1);
 }
 
 void SetParameter::on_writeall_clicked()
@@ -506,28 +502,28 @@ void SetParameter::on_clear_clicked()
   ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
 }
 
-void SetParameter::on_write_clicked()
-{
-  uint16_t targeheight=0,safeheight=0,safevbat=0,maxheight=0,maxradius=0,maxupvel=0,maxdownvel=0,maxhorvel=0;
-  targeheight=ui->targeheight->text().toUInt();
-  safeheight=ui->safeheight->text().toUInt();
-  safevbat=ui->safevbat->text().toUInt();
-  maxheight=ui->maxheight->text().toUInt();
-  maxradius=ui->maxradius->text().toUInt();
-  maxupvel=ui->maxupvel->text().toUInt();
-  maxdownvel=ui->maxdownvel->text().toUInt();
-  maxhorvel=ui->maxhorvel->text().toUInt();
+//void SetParameter::on_write_clicked()
+//{
+//  uint16_t targeheight=0,safeheight=0,safevbat=0,maxheight=0,maxradius=0,maxupvel=0,maxdownvel=0,maxhorvel=0;
+//  targeheight=ui->targeheight->text().toUInt();
+//  safeheight=ui->safeheight->text().toUInt();
+//  safevbat=ui->safevbat->text().toUInt();
+//  maxheight=ui->maxheight->text().toUInt();
+//  maxradius=ui->maxradius->text().toUInt();
+//  maxupvel=ui->maxupvel->text().toUInt();
+//  maxdownvel=ui->maxdownvel->text().toUInt();
+//  maxhorvel=ui->maxhorvel->text().toUInt();
 
-  Send_Parameter(1,targeheight,safeheight,safevbat,maxheight,maxradius,maxupvel,maxdownvel,maxhorvel);
+//  Send_Parameter(1,targeheight,safeheight,safevbat,maxheight,maxradius,maxupvel,maxdownvel,maxhorvel);
 
-}
+//}
 
 void SetParameter::on_read_clicked()
 {
-  Send_Cmd_Check(0x01,0x03);
+  Send_Cmd_Check(0x02,0x03);
 }
 
 void SetParameter::on_factory_clicked()
 {
-  Send_Cmd_Check(0x01,0x04);
-}
+  Send_Cmd_Check(0x02,0xA1);
+} //第一个参数为功能字，对应0x02；第二个参数为Data，对应指令

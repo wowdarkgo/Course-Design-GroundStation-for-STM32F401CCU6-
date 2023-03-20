@@ -98,14 +98,6 @@ void MainWindow::on_bt_switch_clicked()
     }
 }
 
-
-
-
-
-
-
-
-
 void MainWindow::on_bt_sendandreceive_clicked()
 {  
 
@@ -416,15 +408,16 @@ void MainWindow::NCLinkDataPrase(uint8_t data)
 void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 {
     uint8_t sum = 0;
-    for(uint8_t i=0;i<(num-3);i++)     sum^=(*(data_buf+i));//计算校验和
-//    if(!(sum==*(data_buf+num-3)))
-//    {
-//        //qDebug()<<"default";
-//        return;
-//    }
+   for(uint8_t i=0;i<(num-1);i++)     sum+=(*(data_buf+num-1))&0xFF;//计算校验和
+
+    if(!(sum==*(data_buf+(num-1))))
+    {
+        qDebug()<<"default";
+        return;
+    }
     if(!(*(data_buf)==NCLink_Head0 && *(data_buf+1)==NCLink_Head1))//帧头校验
     {
-        //qDebug()<<"default";
+        qDebug()<<"default";
         return;
     }
 //    if(!(*(data_buf+num-2)==NCLink_End0 && *(data_buf+num-1)==NCLink_End1))//帧尾校验
@@ -432,7 +425,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 //        //qDebug()<<"default";
 //        return;
 //    }
-    //qDebug()<<"sum check okay"<<"FC:"<<data_buf[2]<<"LE:"<<data_buf[3];
+//    qDebug()<<"sum check okay";
 
     if(*(data_buf+2)==0X01)//基本姿态数据
     {
@@ -446,8 +439,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 //       yaw_gyro =0.01f*((int32_t)(*(data_buf+18)<<24)|(*(data_buf+19)<<16)|(*(data_buf+20)<<8)|*(data_buf+21));
 
 //       imu_temp =0.01f*((int16_t)(*(data_buf+22)<<8)|*(data_buf+23));
-//       vbat=0.01f*((int16_t)(*(data_buf+24)<<8)|*(data_buf+25));
- vbat =0.01f*((int32_t)(*(data_buf+10)<<24)|(*(data_buf+11)<<16)|(*(data_buf+12)<<8)|*(data_buf+13));
+       vbat =0.01f*((int32_t)(*(data_buf+10)<<24)|(*(data_buf+11)<<16)|(*(data_buf+12)<<8)|*(data_buf+13));
        fly_mode=*(data_buf+14);
        armed_flag=*(data_buf+15);
 
@@ -682,7 +674,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
             //emit showwave();
         }
     }
-    else if(*(data_buf+2)==0X0A)                             //PID1-3
+    else if(*(data_buf+2)==0X10)                             //PID1-3
     {
         kp[0]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[0]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -696,7 +688,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x01;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X0B)                             //PID4-6
+    else if(*(data_buf+2)==0X11)                             //PID4-6
     {
         kp[3]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[3]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -710,7 +702,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x02;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X0C)                             //PID7-9
+    else if(*(data_buf+2)==0X12)                             //PID7-9
     {
         kp[6]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[6]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -724,7 +716,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x03;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X0D)                             //PID7-9
+    else if(*(data_buf+2)==0X13)                             //PID10-12
     {
         kp[9]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[9]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -738,7 +730,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x04;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X0E)                             //PID7-9
+    else if(*(data_buf+2)==0X14)                             //PID13-15
     {
         kp[12]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[12]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -752,7 +744,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x05;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X0F)                             //PID7-9
+    else if(*(data_buf+2)==0X15)                             //PID16-18
     {
         kp[15]=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
         ki[15]=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
@@ -766,53 +758,53 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
         uint8_t ch=0x06;
         emit redrawparameter(ch);
     }
-    else if(*(data_buf+2)==0X10)
-    {
-        targeheight=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
-        safeheight=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
-        safevbat=((int16_t)(*(data_buf+8)<<8)|*(data_buf+9));
-        maxheight=((int16_t)(*(data_buf+10)<<8)|*(data_buf+11));
-        maxradius=((int16_t)(*(data_buf+12)<<8)|*(data_buf+13));
-        maxupvel=((int16_t)(*(data_buf+14)<<8)|*(data_buf+15));
-        maxdownvel=((int16_t)(*(data_buf+16)<<8)|*(data_buf+17));
-        maxhorvel=((int16_t)(*(data_buf+18)<<8)|*(data_buf+19));
-        uint8_t ch=0x07;
-        emit redrawparameter(ch);
-    }
-    else if(*(data_buf+2)==0X11)
-    {
-        gyro_auto_cal_flag=*(data_buf+4);
-        Byte2Float(data_buf, 5,&gyro_x_raw);
-        Byte2Float(data_buf, 9,&gyro_y_raw);
-        Byte2Float(data_buf,13,&gyro_z_raw);
-        Byte2Float(data_buf,17,&acce_x_raw);
-        Byte2Float(data_buf,21,&acce_y_raw);
-        Byte2Float(data_buf,25,&acce_z_raw);
-        Byte2Float(data_buf,29,&mag_x_raw);
-        Byte2Float(data_buf,33,&mag_y_raw);
-        Byte2Float(data_buf,37,&mag_z_raw);
-        //uint8_t ch=0x07;
-        //emit redrawparameter(ch);
-    }
-    else if(*(data_buf+2)==0X12)
-    {
-        Byte2Float(data_buf,4, &gyro_x_offset);
-        Byte2Float(data_buf,8, &gyro_y_offset);
-        Byte2Float(data_buf,12,&gyro_z_offset);
-        Byte2Float(data_buf,16,&acce_x_offset);
-        Byte2Float(data_buf,20,&acce_y_offset);
-        Byte2Float(data_buf,24,&acce_z_offset);
-        Byte2Float(data_buf,28,&acce_x_scale);
-        Byte2Float(data_buf,32,&acce_y_scale);
-        Byte2Float(data_buf,36,&acce_z_scale);
-        Byte2Float(data_buf,40,&mag_x_offset);
-        Byte2Float(data_buf,44,&mag_y_offset);
-        Byte2Float(data_buf,48,&mag_z_offset);
-        Byte2Float(data_buf,52,&pitch_offset);
-        Byte2Float(data_buf,56,&roll_offset);
-        //uint8_t ch=0x07;
-        //emit redrawparameter(ch);
-    }
+//    else if(*(data_buf+2)==0X10)
+//    {
+//        targeheight=((int16_t)(*(data_buf+4)<<8)|*(data_buf+5));
+//        safeheight=((int16_t)(*(data_buf+6)<<8)|*(data_buf+7));
+//        safevbat=((int16_t)(*(data_buf+8)<<8)|*(data_buf+9));
+//        maxheight=((int16_t)(*(data_buf+10)<<8)|*(data_buf+11));
+//        maxradius=((int16_t)(*(data_buf+12)<<8)|*(data_buf+13));
+//        maxupvel=((int16_t)(*(data_buf+14)<<8)|*(data_buf+15));
+//        maxdownvel=((int16_t)(*(data_buf+16)<<8)|*(data_buf+17));
+//        maxhorvel=((int16_t)(*(data_buf+18)<<8)|*(data_buf+19));
+//        uint8_t ch=0x07;
+//        emit redrawparameter(ch);
+//    }
+//    else if(*(data_buf+2)==0X11)
+//    {
+//        gyro_auto_cal_flag=*(data_buf+4);
+//        Byte2Float(data_buf, 5,&gyro_x_raw);
+//        Byte2Float(data_buf, 9,&gyro_y_raw);
+//        Byte2Float(data_buf,13,&gyro_z_raw);
+//        Byte2Float(data_buf,17,&acce_x_raw);
+//        Byte2Float(data_buf,21,&acce_y_raw);
+//        Byte2Float(data_buf,25,&acce_z_raw);
+//        Byte2Float(data_buf,29,&mag_x_raw);
+//        Byte2Float(data_buf,33,&mag_y_raw);
+//        Byte2Float(data_buf,37,&mag_z_raw);
+//        //uint8_t ch=0x07;
+//        //emit redrawparameter(ch);
+//    }
+//    else if(*(data_buf+2)==0X12)
+//    {
+//        Byte2Float(data_buf,4, &gyro_x_offset);
+//        Byte2Float(data_buf,8, &gyro_y_offset);
+//        Byte2Float(data_buf,12,&gyro_z_offset);
+//        Byte2Float(data_buf,16,&acce_x_offset);
+//        Byte2Float(data_buf,20,&acce_y_offset);
+//        Byte2Float(data_buf,24,&acce_z_offset);
+//        Byte2Float(data_buf,28,&acce_x_scale);
+//        Byte2Float(data_buf,32,&acce_y_scale);
+//        Byte2Float(data_buf,36,&acce_z_scale);
+//        Byte2Float(data_buf,40,&mag_x_offset);
+//        Byte2Float(data_buf,44,&mag_y_offset);
+//        Byte2Float(data_buf,48,&mag_z_offset);
+//        Byte2Float(data_buf,52,&pitch_offset);
+//        Byte2Float(data_buf,56,&roll_offset);
+//        //uint8_t ch=0x07;
+//        //emit redrawparameter(ch);
+//    }
 
     else if(*(data_buf+2)==0XF0)
     {
