@@ -929,11 +929,12 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>
              <property name="text">
-              <string>高度位置</string>
+              <string>高度速率</string>
              </property>
             </widget>
            </item>
@@ -953,11 +954,12 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>
              <property name="text">
-              <string>高度速度</string>
+              <string>高度保持</string>
              </property>
             </widget>
            </item>
@@ -977,11 +979,12 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>
              <property name="text">
-              <string>高度加速度 </string>
+              <string>位置速率</string>
              </property>
             </widget>
            </item>
@@ -1001,11 +1004,12 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>
              <property name="text">
-              <string>水平位置</string>
+              <string>位置保持</string>
              </property>
             </widget>
            </item>
@@ -1025,6 +1029,7 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>
@@ -1049,6 +1054,7 @@
              </property>
              <property name="font">
               <font>
+               <family>阿里巴巴普惠体 Medium</family>
                <pointsize>10</pointsize>
               </font>
              </property>

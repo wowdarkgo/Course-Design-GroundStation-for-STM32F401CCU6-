@@ -407,14 +407,14 @@ void MainWindow::NCLinkDataPrase(uint8_t data)
 
 void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 {
-    uint8_t sum = 0;
-   for(uint8_t i=0;i<(num-1);i++)     sum+=(*(data_buf+num-1))&0xFF;//计算校验和
-
-    if(!(sum==*(data_buf+(num-1))))
-    {
-        qDebug()<<"default";
-        return;
-    }
+    uint8_t sum = 0,i=0;
+    //计算校验和
+    for(i=0;i<15;i++)
+      sum += (data_buf[i]) & 0xFF;
+    if(!(*(data_buf+16)==sum)){
+       qDebug()<<sum;
+       return;
+   }
     if(!(*(data_buf)==NCLink_Head0 && *(data_buf+1)==NCLink_Head1))//帧头校验
     {
         qDebug()<<"default";
