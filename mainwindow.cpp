@@ -409,9 +409,10 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 {
     uint8_t sum = 0,i=0;
     //计算校验和
-    for(i=0;i<15;i++)
-      sum += (data_buf[i]) & 0xFF;
-    if(!(*(data_buf+16)==sum)){
+    for(i=0;i<(num-2);i++) //i<15,数据帧num为18要变为15,pid帧num为24，要变为21
+      sum += (data_buf[i]);
+    sum=sum & 0xFF;
+    if(!(*(data_buf+(num-2))==sum)){
        qDebug()<<sum;
        return;
    }

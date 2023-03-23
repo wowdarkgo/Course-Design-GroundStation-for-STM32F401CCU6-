@@ -167,15 +167,15 @@ void SetParameter::setparameter_show(uint8_t ch)
 
     QDateTime current_date_time = QDateTime::currentDateTime();
     QString current_time = current_date_time.toString("hh:mm:ss.zzz");
-    if(ch==1)
+    if(ch==0x01)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>PID1-PID3读取成功");
     }
-    else if(ch==2)
+    else if(ch==0x02)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>PID4-PID6读取成功");
     }
-    else if(ch==3)
+    else if(ch==0x03)
     {
        ui->msg->appendPlainText(current_time+"毫秒>>PID7-PID9读取成功");
     }
@@ -387,7 +387,7 @@ void SetParameter::Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1
 
   for(i=0;i<cnt;i++) sum += data_to_send[i];
   data_to_send[cnt++]=sum &0xFF;
-  if(serialflag) serialPort->write((char *)(data_to_send),cnt);
+  if(serialflag) {serialPort->write((char *)(data_to_send),cnt);serialPort->write((char *)(data_to_send),cnt);serialPort->write((char *)(data_to_send),cnt);}
   else
   {
       QDateTime current_date_time = QDateTime::currentDateTime();
@@ -473,6 +473,64 @@ void SetParameter::on_readall_clicked()
 void SetParameter::on_defaultall_clicked()
 {
   Send_Cmd_Check(0x01,0xA1);
+  ui->kp1->clear();
+  ui->kp2->clear();
+  ui->kp3->clear();
+  ui->kp4->clear();
+  ui->kp5->clear();
+  ui->kp6->clear();
+  ui->kp7->clear();
+  ui->kp8->clear();
+  ui->kp8->clear();
+  ui->kp9->clear();
+  ui->kp10->clear();
+  ui->kp11->clear();
+  ui->kp12->clear();
+  ui->kp13->clear();
+  ui->kp14->clear();
+  ui->kp15->clear();
+  ui->kp16->clear();
+  ui->kp17->clear();
+  ui->kp18->clear();
+
+  ui->ki1->clear();
+  ui->ki2->clear();
+  ui->ki3->clear();
+  ui->ki4->clear();
+  ui->ki5->clear();
+  ui->ki6->clear();
+  ui->ki7->clear();
+  ui->ki8->clear();
+  ui->ki9->clear();
+  ui->ki10->clear();
+  ui->ki11->clear();
+  ui->ki12->clear();
+  ui->ki13->clear();
+  ui->ki14->clear();
+  ui->ki15->clear();
+  ui->ki16->clear();
+  ui->ki17->clear();
+  ui->ki18->clear();
+
+  ui->kd1->clear();
+  ui->kd2->clear();
+  ui->kd3->clear();
+  ui->kd4->clear();
+  ui->kd5->clear();
+  ui->kd6->clear();
+  ui->kd7->clear();
+  ui->kd8->clear();
+  ui->kd9->clear();
+  ui->kd10->clear();
+  ui->kd11->clear();
+  ui->kd12->clear();
+  ui->kd13->clear();
+  ui->kd14->clear();
+  ui->kd15->clear();
+  ui->kd16->clear();
+  ui->kd17->clear();
+  ui->kd18->clear();
+
 }
 
 void SetParameter::on_writeall_clicked()

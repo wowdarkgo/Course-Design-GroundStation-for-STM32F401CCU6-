@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1091</width>
-    <height>757</height>
+    <width>858</width>
+    <height>904</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2645,28 +2645,6 @@ QPushButton:hover
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <widget class="QPlainTextEdit" name="msg">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>阿里巴巴普惠体 Medium</family>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_10">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="clear">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -2712,6 +2690,21 @@ QPushButton:hover
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="msg">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>阿里巴巴普惠体 Medium</family>
+      </font>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

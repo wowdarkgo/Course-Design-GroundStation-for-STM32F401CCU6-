@@ -43,8 +43,6 @@ flightstate::flightstate(QWidget *parent) :
     ui->qwtPlot->setAxisScale(QwtPlot::yLeft,-180.0,360.0);
     ui->qwtPlot->setAxisScale(QwtPlot::xBottom,0,flightstate_wave_num_max);
     ui->qwtPlot->setTitle("姿态角曲线图例");
-    ui->qwtPlot->setAxisTitle(QwtPlot::yLeft,"Degree");
-    ui->qwtPlot->setAxisTitle(QwtPlot::xBottom,"Sampling Points");
 
     //ui->qwtPlot->insertLegend(new QwtLegend(), QwtPlot::RightLegend);//设置右边标注
     QwtLegend *legend = new QwtLegend;//实例化图例
@@ -93,8 +91,8 @@ void flightstate::timer_flight_show()
    ui->yaw->setText(QString::number(yaw,10,2));
 
 //   ui->alt->setText(QString::number(alt_pos_fus,10,2));
-   ui->vz->setText(QString::number(alt_vel_fus,10,2));
-   ui->accelz->setText(QString::number(alt_accel_fus));
+//   ui->vz->setText(QString::number(alt_vel_fus,10,2));
+//   ui->accelz->setText(QString::number(alt_accel_fus));
 
    ui->vbat->setText(QString::number(vbat,10,2));
 //   ui->imu_temp->setText(QString::number(imu_temp,10,2));
@@ -114,55 +112,55 @@ void flightstate::timer_flight_show()
        ui->qwtPlot->replot();
    }
 
-   ui->ax->setText(QString::number(ax));
-   ui->ay->setText(QString::number(ay));
-   ui->az->setText(QString::number(az));
-   ui->gx->setText(QString::number(gx));
-   ui->gy->setText(QString::number(gy));
-   ui->gz->setText(QString::number(gz));
-   ui->mx->setText(QString::number(mx));
-   ui->my->setText(QString::number(my));
-   ui->mz->setText(QString::number(mz));
+//   ui->ax->setText(QString::number(ax));
+//   ui->ay->setText(QString::number(ay));
+//   ui->az->setText(QString::number(az));
+//   ui->gx->setText(QString::number(gx));
+//   ui->gy->setText(QString::number(gy));
+//   ui->gz->setText(QString::number(gz));
+//   ui->mx->setText(QString::number(mx));
+//   ui->my->setText(QString::number(my));
+//   ui->mz->setText(QString::number(mz));
 
-   ui->ch0->setText(QString::number(rc[0])); //ROL
-   ui->ch1->setText(QString::number(rc[1])); //PIT
-   ui->ch2->setText(QString::number(rc[2])); //THR
-   ui->ch3->setText(QString::number(rc[3])); //YAW
-   ui->ch4->setText(QString::number(rc[4])); //AUX1
-   ui->ch5->setText(QString::number(rc[5])); //AUX2
-   ui->ch6->setText(QString::number(rc[6])); //AUX3
-   ui->ch7->setText(QString::number(rc[7])); //AUX4
+//   ui->ch0->setText(QString::number(rc[0])); //ROL
+//   ui->ch1->setText(QString::number(rc[1])); //PIT
+//   ui->ch2->setText(QString::number(rc[2])); //THR
+//   ui->ch3->setText(QString::number(rc[3])); //YAW
+//   ui->ch4->setText(QString::number(rc[4])); //AUX1
+//   ui->ch5->setText(QString::number(rc[5])); //AUX2
+//   ui->ch6->setText(QString::number(rc[6])); //AUX3
+//   ui->ch7->setText(QString::number(rc[7])); //AUX4
 
-   ui->ch0_pro->setValue(rc[0]);  // 当前进度
-   ui->ch1_pro->setValue(rc[1]);  // 当前进度
-   ui->ch2_pro->setValue(rc[2]);  // 当前进度
-   ui->ch3_pro->setValue(rc[3]);  // 当前进度
-   ui->ch4_pro->setValue(rc[4]);  // 当前进度
-   ui->ch5_pro->setValue(rc[5]);  // 当前进度
-   ui->ch6_pro->setValue(rc[6]);  // 当前进度
-   ui->ch7_pro->setValue(rc[7]);  // 当前进度
+//   ui->ch0_pro->setValue(rc[0]);  // 当前进度
+//   ui->ch1_pro->setValue(rc[1]);  // 当前进度
+//   ui->ch2_pro->setValue(rc[2]);  // 当前进度
+//   ui->ch3_pro->setValue(rc[3]);  // 当前进度
+//   ui->ch4_pro->setValue(rc[4]);  // 当前进度
+//   ui->ch5_pro->setValue(rc[5]);  // 当前进度
+//   ui->ch6_pro->setValue(rc[6]);  // 当前进度
+//   ui->ch7_pro->setValue(rc[7]);  // 当前进度
 
 
-   ui->baro_alt->setText(QString::number(alt_obs_baro));
-   ui->ult_alt->setText(QString::number(alt_obs_ult));
-   ui->gps_lng->setText(QString::number(gps_lng,10,6));
-   ui->gps_lat->setText(QString::number(gps_lat,10,6));
+//   ui->baro_alt->setText(QString::number(alt_obs_baro));
+//   ui->ult_alt->setText(QString::number(alt_obs_ult));
+//   ui->gps_lng->setText(QString::number(gps_lng,10,6));
+//   ui->gps_lat->setText(QString::number(gps_lat,10,6));
 //   ui->gps_alt->setText(QString::number(gps_alt));
 //   ui->gps_vel_e->setText(QString::number(lng_vel_obs));
 //   ui->gps_vel_n->setText(QString::number(lat_vel_obs));
-   ui->numsv->setText(QString::number(gps_satellite_num));
+//   ui->numsv->setText(QString::number(gps_satellite_num));
 
    ui->gaugePlane->setDegValue(roll);
    ui->gaugePlane->setRollValue(pitch);
-   ui->gaugeCompass->setValue(360-yaw);
+//   ui->gaugeCompass->setValue(360-yaw);
 
    ui->rulerLine->setValue(yaw);
+ui->rulerBar->setValue(roll);
+//   ui->rulerBar->setMinValue(alt_pos_fus-50);
+//   ui->rulerBar->setMaxValue(alt_pos_fus+50);
+//   ui->rulerBar->setValue(alt_pos_fus);
 
-   ui->rulerBar->setMinValue(alt_pos_fus-50);
-   ui->rulerBar->setMaxValue(alt_pos_fus+50);
-   ui->rulerBar->setValue(alt_pos_fus);
-
-   ui->gaugeSpeed->setValue(alt_vel_fus);
+//   ui->gaugeSpeed->setValue(alt_vel_fus);
 
 
 //   ui->opt_vel_p->setText(QString::number(opt_vel_p));
