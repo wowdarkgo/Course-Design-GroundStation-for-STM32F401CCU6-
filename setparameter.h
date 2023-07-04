@@ -23,6 +23,9 @@ public:
     void Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1,
                                 uint16_t kp2,uint16_t ki2,uint16_t kd2,
                                 uint16_t kp3,uint16_t ki3,uint16_t kd3);
+    void SendSave_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1,
+                                uint16_t kp2,uint16_t ki2,uint16_t kd2,
+                                uint16_t kp3,uint16_t ki3,uint16_t kd3);
     void Send_Parameter(uint8_t group,
                         uint16_t targeheight,
                         uint16_t safeheight,
@@ -47,6 +50,7 @@ private slots:
     void on_write_clicked();
     void on_read_clicked();
     void on_factory_clicked();
+    void on_saveall_clicked();
 };
 
 #endif // SETPARAMETER_H

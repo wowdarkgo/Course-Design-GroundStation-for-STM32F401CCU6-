@@ -45,5 +45,7 @@
         <file>image/export.png</file>
         <file>image/update.png</file>
         <file>image/head.jpg</file>
+        <file>custom_model.obj</file>
+        <file>../../../Airplane.obj</file>
     </qresource>
 </RCC>

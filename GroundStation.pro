@@ -2,8 +2,8 @@ QT       += core gui
 QT       += serialport
 QT       += gui
 QT       += datavisualization
-
-
+QT += 3dcore 3drender 3dinput 3dextras
+QT += qml quick 3dinput
 QMAKE_CXXFLAGS += -gstabs+
 UI_DIR=./UI
 

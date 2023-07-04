@@ -408,6 +408,7 @@ void MainWindow::NCLinkDataPrase(uint8_t data)
 void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 {
     uint8_t sum = 0,i=0;
+
     //计算校验和
     for(i=0;i<(num-2);i++) //i<15,数据帧num为18要变为15,pid帧num为24，要变为21
       sum += (data_buf[i]);
@@ -807,7 +808,7 @@ void MainWindow::dataSort(uint8_t *data_buf,uint8_t num)
 //        //emit redrawparameter(ch);
 //    }
 
-    else if(*(data_buf+2)==0XF0)
+    else if(*(data_buf+2)==0XEF)
     {
        emit sendcheck(*(data_buf+4));
     }

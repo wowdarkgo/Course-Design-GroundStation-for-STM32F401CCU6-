@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
+    <width>882</width>
     <height>904</height>
    </rect>
   </property>
@@ -2555,7 +2555,7 @@ QPushButton:hover
 }2</string>
            </property>
            <property name="text">
-            <string>写入参数</string>
+            <string>写入缓存</string>
            </property>
            <property name="icon">
             <iconset resource="Resources.qrc">
@@ -2566,6 +2566,36 @@ QPushButton:hover
              <width>20</width>
              <height>20</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveall">
+           <property name="font">
+            <font>
+             <family>阿里巴巴普惠体 Medium</family>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton 
+{ 
+	background-color: rgb(240, 240, 240); 
+	border-radius: 20px; 
+	color: rgb(0, 0, 0); 
+} 
+QPushButton:hover 
+{ 
+	background-color: rgb(230,230,230); 
+}2</string>
+           </property>
+           <property name="text">
+            <string>发送pid</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/image/send/send.png</normalon>
+            </iconset>
            </property>
           </widget>
          </item>

@@ -210,7 +210,7 @@ void SetParameter::getcheck(uint8_t ch)
     QString current_time = current_date_time.toString("hh:mm:ss.zzz");
     if(ch==0x10)
     {
-       ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID1-PID3写入成功");
+       ui->msg->appendPlainText(current_time+"毫秒>>飞控返回校验:PID1-PID3写入/存储成功");
 
        kp[0]=ui->kp4->text().toUInt();
        ki[0]=ui->ki4->text().toUInt();
@@ -223,9 +223,9 @@ void SetParameter::getcheck(uint8_t ch)
        kp[2]=ui->kp6->text().toUInt();
        ki[2]=ui->ki6->text().toUInt();
        kd[2]=ui->kd6->text().toUInt();
-       Send_PID(2,kp[0],ki[0],kd[0],
-                     kp[1],ki[1],kd[1],
-                     kp[2],ki[2],kd[2]);
+//       Send_PID(2,kp[0],ki[0],kd[0],
+//                     kp[1],ki[1],kd[1],
+//                     kp[2],ki[2],kd[2]);
 
     }
     else if(ch==0x11)
@@ -387,8 +387,24 @@ void SetParameter::Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1
 
   for(i=0;i<cnt;i++) sum += data_to_send[i];
   data_to_send[cnt++]=sum &0xFF;
-  if(serialflag) {serialPort->write((char *)(data_to_send),cnt);serialPort->write((char *)(data_to_send),cnt);serialPort->write((char *)(data_to_send),cnt);}
-  else
+//    if(serialflag)
+//        {serialPort->write((char *)(data_to_send),cnt);}
+
+  // 创建一个 QTimer 对象
+  ui->msg->appendPlainText("开始写入...");
+  QTimer *timer = new QTimer(this);
+
+  // 连接 timeout 信号和槽函数
+  if(serialflag){
+    connect(timer, &QTimer::timeout, [=]() {
+          serialPort->write((char *)(data_to_send),cnt);
+  });
+
+  // 启动定时器
+    timer->start(500);  // 每隔1秒触发一次 timeout 信号
+    QTimer::singleShot(3000,timer, &QTimer::stop);
+  }
+  if(!serialflag)
   {
       QDateTime current_date_time = QDateTime::currentDateTime();
       QString current_time = current_date_time.toString("hh:mm:ss.zzz");
@@ -396,7 +412,6 @@ void SetParameter::Send_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1
       ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
   }
 }
-
 
 void SetParameter::Send_Parameter(uint8_t group,
                                   uint16_t targeheight,
@@ -585,3 +600,94 @@ void SetParameter::on_factory_clicked()
 {
   Send_Cmd_Check(0x02,0xA1);
 } //第一个参数为功能字，对应0x02；第二个参数为Data，对应指令
+
+void SetParameter::SendSave_PID(uint8_t group,uint16_t kp1,uint16_t ki1,uint16_t kd1,
+                                          uint16_t kp2,uint16_t ki2,uint16_t kd2,
+                                          uint16_t kp3,uint16_t ki3,uint16_t kd3)//地面站指令发送
+{
+  uint8_t data_to_send[50];
+  uint8_t sum = 0,i=0,cnt=0;
+  uint16_t _temp;
+  data_to_send[cnt++]=0xAA;
+  data_to_send[cnt++]=0xAF;
+  data_to_send[cnt++]=0x10+group-1;
+  data_to_send[cnt++]=0;
+
+  _temp = kp1;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = ki1;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = kd1;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+
+  _temp = kp2;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = ki2;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = kd2;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+
+  _temp = kp3;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = ki3;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+  _temp = kd3;
+  data_to_send[cnt++]=BYTE1(_temp);
+  data_to_send[cnt++]=BYTE0(_temp);
+
+  data_to_send[3] = cnt-4;
+
+  for(i=0;i<cnt;i++) sum += data_to_send[i];
+  data_to_send[cnt++]=sum &0xFF;
+//    if(serialflag)
+//        {serialPort->write((char *)(data_to_send),cnt);}
+
+  // 创建一个 QTimer 对象
+  ui->msg->appendPlainText("开始写入...");
+  QTimer *timer = new QTimer(this);
+
+  // 连接 timeout 信号和槽函数
+  if(serialflag){
+    connect(timer, &QTimer::timeout, [=]() {
+          serialPort->write((char *)(data_to_send),cnt);
+  });
+
+  // 启动定时器
+    timer->start(500);  // 每隔1秒触发一次 timeout 信号
+    QTimer::singleShot(3000,timer, &QTimer::stop);
+  }
+  if(!serialflag)
+  {
+      QDateTime current_date_time = QDateTime::currentDateTime();
+      QString current_time = current_date_time.toString("hh:mm:ss.zzz");
+      ui->msg->appendPlainText("读写串口失败，请检查串口配置！！！");
+      ui->msg->moveCursor(QTextCursor::End, QTextCursor::MoveAnchor);
+  }
+}
+void SetParameter::on_saveall_clicked(){
+    //QString period=ui->send_period->text();
+    //int period_cnt=period.toInt();
+    uint16_t kp[3]={0},ki[3]={0},kd[3]={0};
+    kp[0]=ui->kp1->text().toUInt();
+    ki[0]=ui->ki1->text().toUInt();
+    kd[0]=ui->kd1->text().toUInt();
+
+    kp[1]=ui->kp2->text().toUInt();
+    ki[1]=ui->ki2->text().toUInt();
+    kd[1]=ui->kd2->text().toUInt();
+
+    kp[2]=ui->kp3->text().toUInt();
+    ki[2]=ui->ki3->text().toUInt();
+    kd[2]=ui->kd3->text().toUInt();
+    SendSave_PID(1,kp[0],ki[0],kd[0],
+                  kp[1],ki[1],kd[1],
+                  kp[2],ki[2],kd[2]);
+}
